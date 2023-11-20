@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
     private StateMachine stateMachine;
     private NavMeshAgent agent;
     private GameObject player;
-
+    private Vector3 lastKnownPos;
     public NavMeshAgent Agent { get { return agent; } }
     public GameObject Player { get { return player; } }
+    public Vector3 LastKnownPos { get { return lastKnownPos; } set { lastKnownPos = value; } }  
+
     public Path path;
     [Header("Sight Values")]
     public float sightDistance = 20f;

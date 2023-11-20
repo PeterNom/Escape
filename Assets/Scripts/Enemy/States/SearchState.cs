@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SearchState : BaseState
 {
+    private float searchTimer;
+    private float moveTimer;
+
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        enemy.Agent.SetDestination(enemy.LastKnownPos);
     }
 
     public override void Exit()
@@ -16,6 +19,28 @@ public class SearchState : BaseState
 
     public override void Perform()
     {
-        throw new System.NotImplementedException();
+        if (enemy.CanSeePlayer())
+        {
+            stateMachine.ChangeState(new AttackState());
+        }
+
+        if(enemy.Agent.remainingDistance < enemy.Agent.stoppingDistance)
+        {
+            searchTimer += Time.deltaTime;
+            moveTimer += Time.deltaTime;
+
+            if (moveTimer > Random.Range(3, 5))
+            {
+                enemy.Agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere * 10));
+                moveTimer = 0;
+            }
+
+            if (searchTimer>10)
+            {
+                stateMachine.ChangeState(new PatrolState());
+            }
+
+           
+        }
     }
 }
