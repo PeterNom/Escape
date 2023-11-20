@@ -9,12 +9,10 @@ public class SearchState : BaseState
 
     public override void Enter()
     {
-        enemy.Agent.SetDestination(enemy.LastKnownPos);
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Perform()
