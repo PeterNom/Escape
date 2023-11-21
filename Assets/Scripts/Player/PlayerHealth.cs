@@ -36,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log(health);
         health -= damage;
         lerpTimer = 0f;
         durationTimer = 0;
