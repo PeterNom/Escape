@@ -26,9 +26,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private string currentState;
 
+    private float health;
+    private float maxHealth = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -68,5 +72,20 @@ public class Enemy : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        if(health == 0)
+        {
+            ReturnToDust();
+        }
+    }
+
+    private void ReturnToDust()
+    {
+        Destroy(gameObject);
     }
 }
