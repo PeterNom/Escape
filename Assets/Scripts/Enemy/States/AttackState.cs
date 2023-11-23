@@ -52,7 +52,6 @@ public class AttackState : BaseState
 
     public void Shoot()
     {
-        Debug.Log("Shoot");
         Transform gunbarrel = enemy.gunBarrel;
         GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/Bullet") as GameObject, gunbarrel.position, enemy.transform.rotation);
         _rb = bullet.GetComponent<Rigidbody>();

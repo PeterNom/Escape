@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     {
         if(player != null)
         {
-            if(Vector3.Distance(transform.position, player.transform.position) < sightDistance)
+            if (Vector3.Distance(transform.position, player.transform.position) < sightDistance)
             {
                 Vector3 targetDirection = player.transform.position - transform.position - (Vector3.up * eyeHeight);
                 float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
@@ -78,7 +78,8 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
-        if(health == 0)
+        Debug.Log("Damage");
+        if (health == 0)
         {
             ReturnToDust();
         }
@@ -86,6 +87,7 @@ public class Enemy : MonoBehaviour
 
     private void ReturnToDust()
     {
+        Debug.Log("Die");
         Destroy(gameObject);
     }
 }
