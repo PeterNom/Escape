@@ -10,16 +10,22 @@ public class InputManager : MonoBehaviour
     private PlayerController.MoveActions moveActions;
     private PlayerMotor playerMotor;
     private PlayerLook playerLook;
+    private PlayerAttack playerAttack;
 
     private void Awake()
     {
+        // Confines the cursor
+        Cursor.lockState = CursorLockMode.Confined;
+
         playerController = new PlayerController();
         moveActions = playerController.Move;
 
         playerMotor = GetComponent<PlayerMotor>();
         playerLook  = GetComponent<PlayerLook>();
+        playerAttack = GetComponent<PlayerAttack>();
 
         moveActions.Jump.performed += ctx => playerMotor.Jump();
+        moveActions.Shoot.performed += ctx => playerAttack.Shoot();
     }
 
     // Update is called once per frame
