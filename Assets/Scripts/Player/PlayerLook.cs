@@ -22,7 +22,7 @@ public class PlayerLook : MonoBehaviour
         rotateTo = Mathf.Clamp(rotateTo, -80.0f, 80.0f);
 
         playerCamera.transform.localRotation = Quaternion.Euler(rotateTo, 0f, 0f);
-        playerWeapon.localRotation = Quaternion.Euler(0f, 90f, rotateTo);
+        playerWeapon.localRotation = Quaternion.Euler(rotateTo, 0f, 0f);
 
         transform.Rotate(Vector3.up * (mouseInputX * xSensitivity) * Time.deltaTime);
     }
