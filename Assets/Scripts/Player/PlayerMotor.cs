@@ -9,6 +9,7 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController characterController;
     private Vector3 playerVelocity;
     private bool isGrounded;
+    private bool isRunning;
 
     public float speed = 5f;
     public float gravity = -9.8f;
@@ -17,7 +18,8 @@ public class PlayerMotor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();  
+        characterController = GetComponent<CharacterController>();
+        isRunning = false;
     }
 
     // Update is called once per frame
@@ -47,6 +49,22 @@ public class PlayerMotor : MonoBehaviour
         if (isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+        }
+    }
+
+    public void Run()
+    {
+        Debug.Log("Run tatata");
+        Debug.Log(isRunning);
+        if (isRunning == false)
+        {
+            speed *= 2;
+            isRunning = true;
+        }
+        else
+        {
+            speed /= 2;
+            isRunning = false;
         }
     }
 }

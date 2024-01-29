@@ -26,13 +26,13 @@ public class InputManager : MonoBehaviour
 
         moveActions.Jump.performed += ctx => playerMotor.Jump();
         moveActions.Shoot.performed += ctx => playerAttack.Shoot();
+        moveActions.Run.performed += ctc => playerMotor.Run();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        playerMotor.ProcessMove(moveActions.Walk.ReadValue<Vector2>());
-        
+        playerMotor.ProcessMove(moveActions.Walk.ReadValue<Vector2>()); 
     }
 
     private void LateUpdate()
